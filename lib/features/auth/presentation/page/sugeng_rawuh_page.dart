@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:getasan_app/features/auth/presentation/page/login_page.dart';
 import 'package:getasan_app/features/auth/presentation/page/registrasi_page.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
@@ -63,7 +64,14 @@ class SugengRawuhPage extends StatelessWidget {
                   Gaps.v12,
                   SecondaryButton(
                     label: 'Login',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

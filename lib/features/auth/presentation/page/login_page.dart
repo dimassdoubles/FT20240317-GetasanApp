@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: unnecessary_import
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
@@ -7,8 +9,8 @@ import 'package:getasan_app/features/common/presentation/widget/button/secondary
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/text_input.dart';
 
-class RegistrasiPage extends StatelessWidget {
-  const RegistrasiPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class RegistrasiPage extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              'Registrasi',
+              'Login',
               style: AppTexts.extraBold.copyWith(
                 color: AppColors.primary,
                 fontSize: 35,
@@ -31,11 +33,8 @@ class RegistrasiPage extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(48.w),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TextInput(
-                      label: 'Nama Lengkap',
-                    ),
-                    Gaps.v16,
                     const TextInput(
                       label: 'Email',
                     ),
@@ -44,15 +43,12 @@ class RegistrasiPage extends StatelessWidget {
                       label: 'Password',
                     ),
                     Gaps.v16,
-                    const TextInput(
-                      label: 'Password',
-                    ),
-                    Gaps.v16,
-                    const TextInput(
-                      label: 'Verifikasi Password',
-                    ),
-                    SizedBox(
-                      height: 48.h,
+                    Text(
+                      'Lupa Password?',
+                      style: AppTexts.extraBold.copyWith(
+                        fontSize: 15,
+                        color: AppColors.primary,
+                      ),
                     ),
                   ],
                 ),
@@ -63,12 +59,12 @@ class RegistrasiPage extends StatelessWidget {
             padding: EdgeInsets.all(48.w),
             child: Column(
               children: [
-                PrimaryButton(
+                SecondaryButton(
                   label: 'Registrasi',
                   onTap: () {},
                 ),
                 Gaps.v24,
-                SecondaryButton(
+                PrimaryButton(
                   label: 'Login',
                   onTap: () {},
                 ),
