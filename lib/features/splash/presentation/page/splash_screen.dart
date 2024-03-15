@@ -28,11 +28,12 @@ class SplashScreen extends StatelessWidget {
   }
 
   void _goToTheNextPage(BuildContext context) async {
+    debugPrint("Hello Go to next page");
     await Future.delayed(
       const Duration(seconds: 3),
     );
 
-    Navigator.push(
+    Navigator.pushReplacement(
       // ignore: use_build_context_synchronously
       context,
       PageRouteBuilder(
