@@ -8,6 +8,7 @@ import 'package:getasan_app/features/common/presentation/widget/button/primary_b
 import 'package:getasan_app/features/common/presentation/widget/button/secondary_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/text_input.dart';
+import 'package:getasan_app/features/home/presentation/page/home_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -61,12 +62,26 @@ class LoginPage extends StatelessWidget {
               children: [
                 SecondaryButton(
                   label: 'Registrasi',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
+                  },
                 ),
                 Gaps.v24,
                 PrimaryButton(
                   label: 'Login',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
