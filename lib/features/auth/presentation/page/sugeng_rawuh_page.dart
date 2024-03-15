@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:getasan_app/features/auth/presentation/page/registrasi_page.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/primary_button.dart';
@@ -48,7 +49,14 @@ class SugengRawuhPage extends StatelessWidget {
                 children: [
                   PrimaryButton(
                     label: 'Registrasi',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegistrasiPage(),
+                        ),
+                      );
+                    },
                   ),
                   Gaps.v12,
                   const OrDivider(),
