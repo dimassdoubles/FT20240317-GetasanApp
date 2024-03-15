@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:getasan_app/features/home/presentation/page/home_page.dart';
+import 'package:getasan_app/features/splash/presentation/page/splash_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -15,7 +15,7 @@ class App extends StatelessWidget {
           home: child,
         );
       },
-      child: const HomePage(),
+      child: const SplashScreen(),
     );
   }
 }

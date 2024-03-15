@@ -8,6 +8,7 @@ import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/date_input.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/image_input.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/text_input.dart';
+import 'package:getasan_app/features/splash/presentation/page/splash_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -23,6 +24,15 @@ class HomePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Hero(
+                  tag: SplashScreen.splashIconHeroTag,
+                  child: Image.asset(
+                    'assets/logos/logo_fill_text.png',
+                    color: AppColors.primary,
+                    width: 0.4.sw,
+                  ),
+                ),
+                Gaps.v16,
                 PrimaryButton(
                   label: 'Primary Button',
                   onTap: () {},

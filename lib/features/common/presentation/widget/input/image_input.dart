@@ -13,8 +13,8 @@ class ImageInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _FileImagePicker(),
-        OrDivider(),
+        const _FileImagePicker(),
+        const OrDivider(),
         OutlinedButton(
           onPressed: () {
             // TODO camera image picker
