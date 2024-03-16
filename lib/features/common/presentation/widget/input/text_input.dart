@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
@@ -11,6 +12,12 @@ class TextInput extends StatelessWidget {
   final Widget? suffixIcon;
   final int? minLines;
   final int? maxLines;
+  final bool obsecureText;
+  final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
+  final bool isRequired;
+  final String?
+      name; // teks yang akan ditampilkan di error '{name} tidak boleh kosong'
   const TextInput({
     super.key,
     this.controller,
@@ -19,6 +26,11 @@ class TextInput extends StatelessWidget {
     this.suffixIcon,
     this.minLines,
     this.maxLines,
+    this.obsecureText = false,
+    this.inputFormatters,
+    this.keyboardType,
+    this.isRequired = true,
+    this.name,
   });
 
   static border({Color color = AppColors.primary}) => OutlineInputBorder(
@@ -50,6 +62,18 @@ class TextInput extends StatelessWidget {
           style: valueStyle,
           minLines: minLines,
           maxLines: maxLines,
+          obscureText: obsecureText,
+          inputFormatters: inputFormatters,
+          keyboardType: keyboardType,
+          validator: (value) {
+            if (isRequired) {
+              if (value!.isEmpty) {
+                return '${name ?? label ?? 'Inputan'} tidak boleh kosong';
+              }
+            }
+
+            return null;
+          },
           decoration: InputDecoration(
             suffixIcon: suffixIcon,
             contentPadding: EdgeInsets.all(18.w),

@@ -1,3 +1,4 @@
-# getasan_app
+# Getasan App
 
-A new Flutter project.
+notes: 
+- controller berisi state dan handling UI events.
