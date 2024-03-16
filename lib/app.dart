@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/splash/presentation/page/splash_screen.dart';
@@ -14,6 +15,7 @@ class App extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           theme: ThemeData(scaffoldBackgroundColor: AppColors.white),
+          builder: EasyLoading.init(),
           home: child,
         );
       },
