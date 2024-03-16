@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
 import 'package:getasan_app/features/common/helper/input_formater_helper.dart';
+import 'package:getasan_app/features/common/helper/input_validator_helper.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/primary_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/secondary_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
@@ -64,6 +65,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         controller: _emailController,
                         inputFormatters: InputFormatterHelper.forEmail,
                         keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          return InputValidatorHelper.formEmail(value!);
+                        },
                         label: 'Email',
                       ),
                       Gaps.v16,

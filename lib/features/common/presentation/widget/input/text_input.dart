@@ -18,6 +18,7 @@ class TextInput extends StatelessWidget {
   final bool isRequired;
   final String?
       name; // teks yang akan ditampilkan di error '{name} tidak boleh kosong'
+  final String? Function(String? value)? validator;
   const TextInput({
     super.key,
     this.controller,
@@ -31,6 +32,7 @@ class TextInput extends StatelessWidget {
     this.keyboardType,
     this.isRequired = true,
     this.name,
+    this.validator,
   });
 
   static border({Color color = AppColors.primary}) => OutlineInputBorder(
@@ -68,11 +70,11 @@ class TextInput extends StatelessWidget {
           validator: (value) {
             if (isRequired) {
               if (value!.isEmpty) {
-                return '${name ?? label ?? 'Inputan'} tidak boleh kosong';
+                return 'Silahkan masukan ${name ?? label ?? 'inputan'} dulu';
               }
             }
 
-            return null;
+            return validator?.call(value);
           },
           decoration: InputDecoration(
             suffixIcon: suffixIcon,
