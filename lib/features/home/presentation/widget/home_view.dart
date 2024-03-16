@@ -4,6 +4,8 @@ import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
 import 'package:getasan_app/features/common/presentation/widget/app_card.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
+import 'package:getasan_app/features/lapor_camat/presentation/page/lapor_camat_page.dart';
+import 'package:getasan_app/features/lapor_kegiatan_desa/presentation/page/lapor_kegiatan_desa_page.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -70,12 +72,29 @@ class HomeView extends StatelessWidget {
                       SizedBox(
                         height: 64.h,
                       ),
-                      const AppCard(
+                      AppCard(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LaporCamatPage(),
+                            ),
+                          );
+                        },
                         title: 'Lapor Camat',
                         icon: 'assets/icons/ic_lapor_camat.png',
                       ),
                       Gaps.v16,
-                      const AppCard(
+                      AppCard(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const LaporKegiatanDesaPage(),
+                            ),
+                          );
+                        },
                         title: 'Laporan Kegiatan Desa',
                         icon: 'assets/icons/ic_laporan_kegiatan_desa.png',
                       ),

@@ -9,12 +9,16 @@ class TextInput extends StatelessWidget {
   final String? label;
   final String? hint;
   final Widget? suffixIcon;
+  final int? minLines;
+  final int? maxLines;
   const TextInput({
     super.key,
     this.controller,
     this.label,
     this.hint,
     this.suffixIcon,
+    this.minLines,
+    this.maxLines,
   });
 
   static border({Color color = AppColors.primary}) => OutlineInputBorder(
@@ -44,6 +48,8 @@ class TextInput extends StatelessWidget {
         TextFormField(
           controller: controller,
           style: valueStyle,
+          minLines: minLines,
+          maxLines: maxLines,
           decoration: InputDecoration(
             suffixIcon: suffixIcon,
             contentPadding: EdgeInsets.all(18.w),
