@@ -38,17 +38,23 @@ class SearchLaporanView extends StatelessWidget {
                   Column(
                     children: [
                       Center(
-                        child: Image.asset(
-                          icon,
-                          height: 52.w,
+                        child: Hero(
+                          tag: 'iconCard:$icon',
+                          child: Image.asset(
+                            icon,
+                            height: 52.w,
+                          ),
                         ),
                       ),
                       Gaps.v24,
-                      Text(
-                        title,
-                        style: AppTexts.extraBold.copyWith(
-                          fontSize: 35,
-                          color: AppColors.primary,
+                      Hero(
+                        tag: 'titleCard:$title',
+                        child: Text(
+                          title,
+                          style: AppTexts.extraBold.copyWith(
+                            fontSize: 35,
+                            color: AppColors.primary,
+                          ),
                         ),
                       ),
                     ],

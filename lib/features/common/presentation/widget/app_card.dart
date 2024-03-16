@@ -37,16 +37,22 @@ class AppCard extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Text(
-                title,
-                style: AppTexts.extraBold.copyWith(
-                  color: AppColors.primary,
-                  fontSize: 20.sp,
+              child: Hero(
+                tag: 'titleCard:$title',
+                child: Text(
+                  title,
+                  style: AppTexts.extraBold.copyWith(
+                    color: AppColors.primary,
+                    fontSize: 20.sp,
+                  ),
                 ),
               ),
             ),
             Gaps.h12,
-            Image.asset(icon),
+            Hero(
+              tag: 'iconCard:$icon',
+              child: Image.asset(icon),
+            ),
           ],
         ),
       ),
