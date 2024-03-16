@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-// ignore: unnecessary_import
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/presentation/widget/app_back_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/primary_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
@@ -16,7 +13,6 @@ class InputLaporCamatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
       appBar: const GetasanAppBar(
         isCenterLogo: true,
       ),
