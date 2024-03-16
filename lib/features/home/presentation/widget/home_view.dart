@@ -29,6 +29,7 @@ class HomeView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Gaps.v24,
                 Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
