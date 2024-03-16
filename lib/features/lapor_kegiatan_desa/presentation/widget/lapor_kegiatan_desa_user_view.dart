@@ -9,7 +9,7 @@ class LaporKegiatanDesaUserView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SearchLaporanView(
       icon: 'assets/icons/ic_laporan_kegiatan_desa.png',
-      title: 'Lapor Kegiatan Desa',
+      title: 'Laporan Kegiatan Desa',
       onAdd: () {
         Navigator.push(
           context,
