@@ -6,6 +6,7 @@ import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/presentation/widget/app_back_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/primary_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
+import 'package:getasan_app/features/common/presentation/widget/getasan_app_bar.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/image_input.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/text_input.dart';
 
@@ -16,6 +17,9 @@ class InputLaporCamatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
+      appBar: const GetasanAppBar(
+        isCenterLogo: true,
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(

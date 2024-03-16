@@ -5,6 +5,7 @@ import 'package:getasan_app/features/common/constant/style/app_texts.dart';
 import 'package:getasan_app/features/common/presentation/widget/app_back_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/primary_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
+import 'package:getasan_app/features/common/presentation/widget/getasan_app_bar.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/text_input.dart';
 
 class InputDataIbuPage extends StatelessWidget {
@@ -13,6 +14,9 @@ class InputDataIbuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const GetasanAppBar(
+        isCenterLogo: true,
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),

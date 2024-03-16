@@ -14,124 +14,97 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        SafeArea(
-          child: Container(
-            padding: EdgeInsets.all(16.w),
-            width: double.infinity,
-            color: AppColors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Container(
+          padding: EdgeInsets.only(top: 56.h),
+          width: 1.sw,
+          height: 1.sh,
+          alignment: Alignment.bottomRight,
+          child: Image.asset('assets/images/home_bg.png'),
+        ),
+        SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/logos/logo_outline_text_samping.png',
-                  width: 137.w,
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      'Sugeng Rawuh, ',
+                      style: AppTexts.medium.copyWith(
+                        fontSize: 19,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                    Text(
+                      'SALMA SHAFIRA',
+                      style: AppTexts.extraBold.copyWith(
+                        fontSize: 19,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ],
                 ),
-                Image.asset(
-                  'assets/icons/ic_hamburger.png',
-                  width: 26.w,
+                SizedBox(
+                  height: 64.h,
                 ),
+                AppCard(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LaporCamatPage(),
+                      ),
+                    );
+                  },
+                  title: 'Lapor Camat',
+                  icon: 'assets/icons/ic_lapor_camat.png',
+                ),
+                Gaps.v16,
+                AppCard(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LaporKegiatanDesaPage(),
+                      ),
+                    );
+                  },
+                  title: 'Laporan Kegiatan Desa',
+                  icon: 'assets/icons/ic_laporan_kegiatan_desa.png',
+                ),
+                Gaps.v16,
+                AppCard(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LaporKelahiranPage(),
+                      ),
+                    );
+                  },
+                  title: 'Laporan Kelahiran',
+                  icon: 'assets/icons/ic_laporan_kelahiran.png',
+                ),
+                Gaps.v16,
+                AppCard(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LaporKematianPage(),
+                      ),
+                    );
+                  },
+                  title: 'Laporan Kematian',
+                  icon: 'assets/icons/ic_laporan_kematian.png',
+                ),
+                Gaps.v16,
               ],
             ),
-          ),
-        ),
-        Expanded(
-          child: Stack(
-            children: [
-              Container(
-                padding: EdgeInsets.only(top: 56.h),
-                width: 1.sw,
-                height: 1.sh,
-                alignment: Alignment.bottomRight,
-                child: Image.asset('assets/images/home_bg.png'),
-              ),
-              SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Text(
-                            'Sugeng Rawuh, ',
-                            style: AppTexts.medium.copyWith(
-                              fontSize: 19,
-                              color: AppColors.primary,
-                            ),
-                          ),
-                          Text(
-                            'SALMA SHAFIRA',
-                            style: AppTexts.extraBold.copyWith(
-                              fontSize: 19,
-                              color: AppColors.primary,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 64.h,
-                      ),
-                      AppCard(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LaporCamatPage(),
-                            ),
-                          );
-                        },
-                        title: 'Lapor Camat',
-                        icon: 'assets/icons/ic_lapor_camat.png',
-                      ),
-                      Gaps.v16,
-                      AppCard(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const LaporKegiatanDesaPage(),
-                            ),
-                          );
-                        },
-                        title: 'Laporan Kegiatan Desa',
-                        icon: 'assets/icons/ic_laporan_kegiatan_desa.png',
-                      ),
-                      Gaps.v16,
-                      AppCard(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LaporKelahiranPage(),
-                            ),
-                          );
-                        },
-                        title: 'Laporan Kelahiran',
-                        icon: 'assets/icons/ic_laporan_kelahiran.png',
-                      ),
-                      Gaps.v16,
-                      AppCard(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LaporKematianPage(),
-                            ),
-                          );
-                        },
-                        title: 'Laporan Kematian',
-                        icon: 'assets/icons/ic_laporan_kematian.png',
-                      ),
-                      Gaps.v16,
-                    ],
-                  ),
-                ),
-              ),
-            ],
           ),
         ),
       ],
