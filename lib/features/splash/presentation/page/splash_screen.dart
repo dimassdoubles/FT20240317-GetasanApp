@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:getasan_app/features/auth/presentation/page/select_role_page.dart';
+import 'package:getasan_app/features/auth/presentation/page/login_page.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -39,7 +39,7 @@ class SplashScreen extends StatelessWidget {
       PageRouteBuilder(
         transitionDuration: const Duration(milliseconds: 700),
         pageBuilder: (context, animation, secondaryAnimation) =>
-            const SelectRolePage(),
+            const LoginPage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
             opacity: animation,
