@@ -39,11 +39,13 @@ class AppCard extends StatelessWidget {
             Expanded(
               child: Hero(
                 tag: 'titleCard:$title',
-                child: Text(
-                  title,
+                child: DefaultTextStyle(
                   style: AppTexts.extraBold.copyWith(
                     color: AppColors.primary,
                     fontSize: 20.sp,
+                  ),
+                  child: Text(
+                    title,
                   ),
                 ),
               ),

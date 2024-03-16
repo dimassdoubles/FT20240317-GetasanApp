@@ -49,11 +49,13 @@ class SearchLaporanView extends StatelessWidget {
                       Gaps.v24,
                       Hero(
                         tag: 'titleCard:$title',
-                        child: Text(
-                          title,
+                        child: DefaultTextStyle(
                           style: AppTexts.extraBold.copyWith(
                             fontSize: 35,
                             color: AppColors.primary,
+                          ),
+                          child: Text(
+                            title,
                           ),
                         ),
                       ),
