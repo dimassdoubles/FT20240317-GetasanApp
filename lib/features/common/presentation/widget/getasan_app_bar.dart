@@ -40,7 +40,6 @@ class GetasanAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Container(
                     constraints: BoxConstraints(
                       maxHeight: logoHeight,
-                      minHeight: logoHeight,
                     ),
                     child: action,
                   ),
