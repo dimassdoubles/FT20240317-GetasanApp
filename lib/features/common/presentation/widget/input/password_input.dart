@@ -8,11 +8,15 @@ class PasswordInput extends ConsumerStatefulWidget {
   final String? label;
   final String? hint;
   final TextEditingController? controller;
+  final bool isRequired;
+  final String? Function(String? value)? validator;
   const PasswordInput({
     super.key,
     this.controller,
     this.label,
     this.hint,
+    this.isRequired = true,
+    this.validator,
   });
 
   @override
@@ -25,10 +29,12 @@ class _PasswordInputState extends ConsumerState<PasswordInput> {
   @override
   Widget build(BuildContext context) {
     return TextInput(
+      isRequired: widget.isRequired,
       controller: widget.controller,
       label: widget.label,
       hint: widget.hint,
       obsecureText: isHidden,
+      validator: widget.validator,
       maxLines: 1,
       suffixIcon: InkWell(
         onTap: () {
