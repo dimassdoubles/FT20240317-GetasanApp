@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getasan_app/features/common/presentation/widget/search_laporan_view.dart';
+import 'package:getasan_app/features/lapor_kematian/presentation/page/daftar_laporan_kematian_page.dart';
 import 'package:getasan_app/features/lapor_kematian/presentation/page/input_laporan_kematian_page.dart';
 
 class LaporKematianUserView extends StatelessWidget {
@@ -10,6 +11,14 @@ class LaporKematianUserView extends StatelessWidget {
     return SearchLaporanView(
       icon: 'assets/icons/ic_laporan_kematian.png',
       title: 'Laporan Kematian',
+      onSearch: (bulan, tahun) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const DaftarLaporanKematianPage(),
+          ),
+        );
+      },
       onAdd: () {
         Navigator.push(
           context,

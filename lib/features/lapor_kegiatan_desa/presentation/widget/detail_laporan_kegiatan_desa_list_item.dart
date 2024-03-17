@@ -48,6 +48,7 @@ class DetailLaporanKegiatanDesaListItem extends StatelessWidget {
               size: 150.w,
             ),
           ),
+        Gaps.v16,
       ],
     );
   }

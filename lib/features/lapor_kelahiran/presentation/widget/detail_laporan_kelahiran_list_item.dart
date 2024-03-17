@@ -105,7 +105,7 @@ class DetailLaporanKelahiranListItem extends StatelessWidget {
         Gaps.v4,
         const Text('f. Email'),
         Text('    $emailIbu'),
-        Gaps.v4,
+        Gaps.v16,
       ],
     );
   }

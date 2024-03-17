@@ -30,6 +30,7 @@ class DetailLaporanCamtListItem extends StatelessWidget {
               size: 150.w,
             ),
           ),
+        Gaps.v16,
       ],
     );
   }
