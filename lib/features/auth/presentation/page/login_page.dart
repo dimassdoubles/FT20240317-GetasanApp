@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:getasan_app/features/auth/presentation/page/registrasi_page.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
 import 'package:getasan_app/features/common/helper/input_formater_helper.dart';
@@ -11,7 +10,6 @@ import 'package:getasan_app/features/common/helper/input_validator_helper.dart';
 import 'package:getasan_app/features/common/helper/keyboard_helper.dart';
 import 'package:getasan_app/features/common/helper/state_dialog_helper.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/primary_button.dart';
-import 'package:getasan_app/features/common/presentation/widget/button/secondary_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/password_input.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/text_input.dart';
@@ -93,45 +91,29 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(48.w, 16.w, 48.w, 48.w),
-              child: Column(
-                children: [
-                  SecondaryButton(
-                    label: 'Registrasi',
-                    onTap: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const RegistrasiPage(),
-                        ),
-                      );
-                    },
-                  ),
-                  Gaps.v24,
-                  PrimaryButton(
-                    label: 'Login',
-                    onTap: () async {
-                      KeyboardHelper.close(context);
+              child: PrimaryButton(
+                label: 'Login',
+                onTap: () async {
+                  KeyboardHelper.close(context);
 
-                      if (_formKey.currentState!.validate()) {
-                        debugPrint('Login credential:');
-                        debugPrint('- Email: ${_emailController.text}');
-                        debugPrint('- Password: ${_passwordController.text}');
+                  if (_formKey.currentState!.validate()) {
+                    debugPrint('Login credential:');
+                    debugPrint('- Email: ${_emailController.text}');
+                    debugPrint('- Password: ${_passwordController.text}');
 
-                        StateDialogHelper.showLoading();
-                        await Future.delayed(const Duration(seconds: 3));
-                        StateDialogHelper.dismiss();
+                    StateDialogHelper.showLoading();
+                    await Future.delayed(const Duration(seconds: 3));
+                    StateDialogHelper.dismiss();
 
-                        Navigator.pushReplacement(
-                          // ignore: use_build_context_synchronously
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomePage(),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ],
+                    Navigator.pushReplacement(
+                      // ignore: use_build_context_synchronously
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
+                  }
+                },
               ),
             ),
           ],
