@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
+import 'package:getasan_app/features/common/constant/style/app_size.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
 import 'package:getasan_app/features/common/presentation/widget/app_back_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/primary_button.dart';
@@ -17,40 +17,48 @@ class InputDataIbuPage extends StatelessWidget {
       appBar: const GetasanAppBar(
         isCenterLogo: true,
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppBackButton(context),
-              Gaps.v36,
-              Text(
-                'Data Ibu',
-                style: AppTexts.extraBold.copyWith(
-                  fontSize: 19,
-                  color: AppColors.primary,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppSize.pagePadding),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppBackButton(context),
+            Gaps.v36,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Data Ibu',
+                      style: AppTexts.extraBold.copyWith(
+                        fontSize: 19,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                    Gaps.v16,
+                    const TextInput(hint: 'Nama Ibu'),
+                    Gaps.v16,
+                    const TextInput(hint: 'Pekerjaan'),
+                    Gaps.v16,
+                    const TextInput(hint: 'Alamat Rumah'),
+                    Gaps.v16,
+                    const TextInput(hint: 'NIK'),
+                    Gaps.v16,
+                    const TextInput(hint: 'No HP'),
+                    Gaps.v16,
+                    const TextInput(hint: 'Email'),
+                    Gaps.v36,
+                    PrimaryButton(
+                      label: 'Kirim',
+                      onTap: () {},
+                    ),
+                    Gaps.v36,
+                  ],
                 ),
               ),
-              Gaps.v16,
-              const TextInput(hint: 'Nama Ibu'),
-              Gaps.v16,
-              const TextInput(hint: 'Pekerjaan'),
-              Gaps.v16,
-              const TextInput(hint: 'Alamat Rumah'),
-              Gaps.v16,
-              const TextInput(hint: 'NIK'),
-              Gaps.v16,
-              const TextInput(hint: 'No HP'),
-              Gaps.v16,
-              const TextInput(hint: 'Email'),
-              Gaps.v36,
-              PrimaryButton(
-                label: 'Berikutnya',
-                onTap: () {},
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

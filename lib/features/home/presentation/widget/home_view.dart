@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
+import 'package:getasan_app/features/common/constant/style/app_size.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
 import 'package:getasan_app/features/common/presentation/widget/app_card.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
@@ -25,7 +26,7 @@ class HomeView extends StatelessWidget {
         ),
         SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            padding: EdgeInsets.symmetric(horizontal: AppSize.pagePadding),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

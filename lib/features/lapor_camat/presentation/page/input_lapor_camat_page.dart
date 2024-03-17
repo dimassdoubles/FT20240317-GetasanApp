@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:getasan_app/features/common/constant/style/app_size.dart';
 import 'package:getasan_app/features/common/presentation/widget/app_back_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/primary_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
@@ -17,30 +18,31 @@ class InputLaporCamatPage extends StatelessWidget {
         isCenterLogo: true,
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        padding: EdgeInsets.symmetric(horizontal: AppSize.pagePadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SafeArea(
-              child: AppBackButton(context),
-            ),
+            AppBackButton(context),
+            Gaps.v36,
             Expanded(
-              child: Column(
-                children: [
-                  const TextInput(
-                    hint: 'Isi pesan di kolom ini...',
-                    minLines: 5,
-                  ),
-                  Gaps.v24,
-                  const ImageInput(),
-                  SizedBox(
-                    height: 56.h,
-                  ),
-                  PrimaryButton(
-                    label: 'Kirim',
-                    onTap: () {},
-                  ),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const TextInput(
+                      hint: 'Isi pesan di kolom ini...',
+                      minLines: 5,
+                    ),
+                    Gaps.v24,
+                    const ImageInput(),
+                    SizedBox(
+                      height: 56.h,
+                    ),
+                    PrimaryButton(
+                      label: 'Kirim',
+                      onTap: () {},
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

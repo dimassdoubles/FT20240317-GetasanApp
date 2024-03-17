@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:getasan_app/features/common/constant/style/app_size.dart';
 import 'package:getasan_app/features/common/presentation/widget/app_back_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/primary_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
@@ -19,32 +20,35 @@ class InputLaporanKegiatanDesaPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.symmetric(horizontal: AppSize.pagePadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppBackButton(context),
-              SizedBox(height: 36.h),
+              Gaps.v36,
               Expanded(
-                child: Column(
-                  children: [
-                    const TextInput(hint: 'Nama Kegiatan'),
-                    Gaps.v16,
-                    const TextInput(hint: 'Penanggung jawab kegiatan'),
-                    Gaps.v16,
-                    const DateInput(),
-                    Gaps.v16,
-                    const TextInput(hint: 'Hasil Kegiatan'),
-                    Gaps.v16,
-                    const TextInput(hint: 'Kendala'),
-                    Gaps.v16,
-                    const ImageInput(),
-                    SizedBox(height: 42.h),
-                    PrimaryButton(
-                      label: 'Kirim',
-                      onTap: () {},
-                    ),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const TextInput(hint: 'Nama Kegiatan'),
+                      Gaps.v16,
+                      const TextInput(hint: 'Penanggung jawab kegiatan'),
+                      Gaps.v16,
+                      const DateInput(),
+                      Gaps.v16,
+                      const TextInput(hint: 'Hasil Kegiatan'),
+                      Gaps.v16,
+                      const TextInput(hint: 'Kendala'),
+                      Gaps.v16,
+                      const ImageInput(),
+                      SizedBox(height: 42.h),
+                      PrimaryButton(
+                        label: 'Kirim',
+                        onTap: () {},
+                      ),
+                      Gaps.v24,
+                    ],
+                  ),
                 ),
               ),
             ],

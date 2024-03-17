@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
+import 'package:getasan_app/features/common/constant/style/app_size.dart';
 
 class GetasanAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool isCenterLogo;
@@ -23,7 +24,10 @@ class GetasanAppBar extends StatelessWidget implements PreferredSizeWidget {
         elevation: 6,
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(paddingSize),
+            padding: EdgeInsets.symmetric(
+              horizontal: AppSize.pagePadding,
+              vertical: paddingSize,
+            ),
             child: Row(
               mainAxisAlignment: action == null
                   ? (isCenterLogo
