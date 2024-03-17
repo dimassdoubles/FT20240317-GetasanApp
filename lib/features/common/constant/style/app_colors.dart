@@ -13,4 +13,6 @@ class AppColors {
   static const secondary = Color(0xffFF8616);
 
   static const danger = Color(0xffF05656);
+
+  static const neutral100 = Color(0xffD9D9D9);
 }

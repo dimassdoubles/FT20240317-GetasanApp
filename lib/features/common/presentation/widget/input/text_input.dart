@@ -19,8 +19,10 @@ class TextInput extends StatelessWidget {
   final String?
       name; // teks yang akan ditampilkan di error '{name} tidak boleh kosong'
   final String? Function(String? value)? validator;
+  final bool readOnly;
   const TextInput({
     super.key,
+    this.readOnly = false,
     this.controller,
     this.label,
     this.hint,
@@ -61,6 +63,7 @@ class TextInput extends StatelessWidget {
         Gaps.v4,
         TextFormField(
           controller: controller,
+          readOnly: readOnly,
           style: valueStyle,
           minLines: minLines,
           maxLines: maxLines,
