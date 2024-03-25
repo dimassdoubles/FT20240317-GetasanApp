@@ -8,4 +8,5 @@ final authRemoteDatasourceProvider = Provider<AuthRemoteDatasource>(
 
 abstract class AuthRemoteDatasource {
   Future<AppUser> login(String email, String password);
+  Future<void> logout();
 }

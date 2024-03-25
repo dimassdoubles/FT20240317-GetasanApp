@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:getasan_app/features/auth/domain/models/app_user.dart';
 import 'package:getasan_app/features/auth/domain/repo/auth_repo.dart';
@@ -15,6 +16,17 @@ class AuthController {
 
   final currentUserProvider = StateProvider<AppUser?>((ref) => null);
 
+  Future<void> checkLogin({Function()? onCheckDone}) async {
+    debugPrint('checkLogin');
+    final (user, err) = await _repo.isLogin();
+    if (err != null) {
+      StateDialogHelper.showError('Kesalahan Autentikasi', err.message);
+    }
+    _ref.read(currentUserProvider.notifier).state = user;
+
+    onCheckDone?.call();
+  }
+
   Future<bool> login(String email, String password) async {
     StateDialogHelper.showLoading();
     final (user, err) = await _repo.login(email, password);
@@ -31,9 +43,13 @@ class AuthController {
 
   void logout() async {
     StateDialogHelper.showLoading();
-    await Future.delayed(const Duration(seconds: 2));
+    final (_, err) = await _repo.logout();
     StateDialogHelper.dismiss();
 
-    _ref.read(currentUserProvider.notifier).state = null;
+    if (err != null) {
+      StateDialogHelper.showError('Kesalahan Autentikasi', err.message);
+    } else {
+      _ref.read(currentUserProvider.notifier).state = null;
+    }
   }
 }

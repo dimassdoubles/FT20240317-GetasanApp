@@ -50,4 +50,15 @@ class AuthFirebaseDatasource implements AuthRemoteDatasource {
       throw AppException(e.toString());
     }
   }
+
+  @override
+  Future<void> logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      throw AppException(
+        'Gagal logout firebase: ${e.toString()}',
+      );
+    }
+  }
 }
