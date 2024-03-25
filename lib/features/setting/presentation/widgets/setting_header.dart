@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:getasan_app/features/auth/presentation/controller/auth_controller.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_size.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
@@ -14,6 +15,8 @@ class SettingHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentUser = ref.read(authControllerProvider).currentUserProvider;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: paddingSize, vertical: 16.w),
       child: Row(
@@ -25,7 +28,7 @@ class SettingHeader extends ConsumerWidget {
           ),
           Gaps.h8,
           Text(
-            'Salma Shafira',
+            ref.watch(currentUser)?.name ?? '',
             style: AppTexts.bold.copyWith(
               color: AppColors.primary,
               fontSize: 18,
