@@ -10,6 +10,13 @@ class StateDialogHelper {
     );
   }
 
+  static showError(
+    String title,
+    String body,
+  ) {
+    EasyLoading.showError(body);
+  }
+
   static dismiss() {
     EasyLoading.dismiss();
   }
