@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:getasan_app/features/auth/data/datasource/remote/auth_remote_datasource.dart';
@@ -9,6 +10,8 @@ final authRemoteDatasource =
     Provider<AuthRemoteDatasource>((ref) => AuthFirebaseDatasource());
 
 class AuthFirebaseDatasource implements AuthRemoteDatasource {
+  final _db = FirebaseFirestore.instance;
+
   @override
   Future<AppUser> login(String email, String password) async {
     try {
@@ -18,15 +21,19 @@ class AuthFirebaseDatasource implements AuthRemoteDatasource {
         password: password,
       );
 
-      // TODO hapus ganti data sesuai dengan database
+      final snapshot =
+          await _db.collection('users').doc(credential.user!.uid).get();
+
+      final userMap = snapshot.data() as Map<String, dynamic>;
+
       return AppUser(
-        name: 'Dimas Saputro',
-        email: credential.user?.email ?? '',
+        id: credential.user!.uid,
+        name: userMap['name'],
+        email: userMap['email'],
         profilePict: '',
         desa: Desa(
-          id: '1',
-          name: 'Desa Sumber Jatipohon',
-          image: '',
+          id: userMap['villageId'],
+          name: userMap['villageName'],
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -34,6 +41,8 @@ class AuthFirebaseDatasource implements AuthRemoteDatasource {
         throw AppAuthException('User tidak ditemukan');
       } else if (e.code == 'wrong-password') {
         throw AppAuthException('Password salah');
+      } else if (e.code == 'invalid-credential') {
+        throw AppAuthException('Email atau password yang anda masukan salah');
       } else {
         rethrow;
       }
