@@ -9,7 +9,11 @@ import 'package:getasan_app/features/setting/presentation/widgets/setting_header
 class SettingTile extends ConsumerWidget {
   final IconData icon;
   final String label;
-  const SettingTile({super.key, required this.icon, required this.label,});
+  const SettingTile({
+    super.key,
+    required this.icon,
+    required this.label,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,11 +31,13 @@ class SettingTile extends ConsumerWidget {
             ),
           ),
           Gaps.h8,
-          Text(
-            label,
-            style: AppTexts.bold.copyWith(
-              color: AppColors.primary,
-              fontSize: 18,
+          Expanded(
+            child: Text(
+              label,
+              style: AppTexts.bold.copyWith(
+                color: AppColors.primary,
+                fontSize: 18,
+              ),
             ),
           ),
         ],

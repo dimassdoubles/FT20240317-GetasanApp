@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:getasan_app/features/auth/presentation/controller/auth_controller.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_size.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
@@ -10,11 +12,13 @@ import 'package:getasan_app/features/lapor_kegiatan_desa/presentation/page/lapor
 import 'package:getasan_app/features/lapor_kelahiran/presentation/page/lapor_kelahiran_page.dart';
 import 'package:getasan_app/features/lapor_kematian/presentation/page/lapor_kematian_page.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authController = ref.watch(authControllerProvider);
+
     return Stack(
       children: [
         Container(
@@ -42,7 +46,7 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'SALMA SHAFIRA',
+                      ref.watch(authController.currentUserProvider)?.name ?? '',
                       style: AppTexts.extraBold.copyWith(
                         fontSize: 19,
                         color: AppColors.primary,

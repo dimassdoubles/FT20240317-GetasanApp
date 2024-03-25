@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:getasan_app/features/auth/presentation/controller/auth_controller.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_size.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
@@ -14,6 +15,9 @@ class SettingPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final authController = ref.read(authControllerProvider);
+    final currentUser = ref.watch(authController.currentUserProvider);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primary,
@@ -33,12 +37,20 @@ class SettingPage extends ConsumerWidget {
           const SettingHeader(),
           const Divider(color: AppColors.primary200),
           Gaps.v24,
-          const SettingTile(icon: Icons.email, label: 'salma@gmail.com'),
+          SettingTile(
+            icon: Icons.email,
+            label: currentUser?.email ?? '',
+          ),
           Gaps.v24,
-          const SettingTile(icon: Icons.place, label: 'Desa A (asal desa)'),
+          SettingTile(
+            icon: Icons.place,
+            label: '${currentUser?.desa.name} (asal desa)',
+          ),
           Gaps.v24,
           const SettingTile(
-              icon: Icons.notifications_rounded, label: 'Notifikasi'),
+            icon: Icons.notifications_rounded,
+            label: 'Notifikasi',
+          ),
           const Spacer(),
           Padding(
             padding: EdgeInsets.fromLTRB(
