@@ -78,14 +78,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         controller: _passwordController,
                         label: 'Password',
                       ),
-                      Gaps.v16,
-                      Text(
-                        'Lupa Password?',
-                        style: AppTexts.extraBold.copyWith(
-                          fontSize: 15,
-                          color: AppColors.primary,
-                        ),
-                      ),
                     ],
                   ),
                 ),
