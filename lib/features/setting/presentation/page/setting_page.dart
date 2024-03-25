@@ -61,7 +61,9 @@ class SettingPage extends ConsumerWidget {
             ),
             child: PrimaryButton(
               label: 'Logout',
-              onTap: () {},
+              onTap: () {
+                authController.logout();
+              },
               backgroundColor: AppColors.danger,
             ),
           ),

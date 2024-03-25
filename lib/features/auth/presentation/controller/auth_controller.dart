@@ -28,4 +28,12 @@ class AuthController {
     _ref.read(currentUserProvider.notifier).state = user;
     return true;
   }
+
+  void logout() async {
+    StateDialogHelper.showLoading();
+    await Future.delayed(const Duration(seconds: 2));
+    StateDialogHelper.dismiss();
+
+    _ref.read(currentUserProvider.notifier).state = null;
+  }
 }
