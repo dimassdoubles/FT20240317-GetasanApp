@@ -20,48 +20,58 @@ class InputLaporCamatPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.read(inputLaporanCamatControllerProvider);
 
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
     return Scaffold(
       appBar: const GetasanAppBar(
         isCenterLogo: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppSize.pagePadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppBackButton(context),
-            Gaps.v36,
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const TextInput(
-                      hint: 'Isi pesan di kolom ini...',
-                      minLines: 5,
-                    ),
-                    Gaps.v24,
-                    if (ref.watch(controller.selectedImageProvider) != null)
-                      _FileImae(
-                        file: ref.watch(controller.selectedImageProvider)!,
-                        onDelete: controller.deleteImage,
+      body: Form(
+        key: formKey,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: AppSize.pagePadding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppBackButton(context),
+              Gaps.v36,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TextInput(
+                        controller: controller.pesanController,
+                        hint: 'Isi pesan di kolom ini...',
+                        minLines: 5,
                       ),
-                    if (ref.watch(controller.selectedImageProvider) == null)
-                      ImageInput(
-                        onImagePicked: controller.onSelectedImage,
+                      Gaps.v24,
+                      if (ref.watch(controller.selectedImageProvider) != null)
+                        _FileImae(
+                          file: ref.watch(controller.selectedImageProvider)!,
+                          onDelete: controller.deleteImage,
+                        ),
+                      if (ref.watch(controller.selectedImageProvider) == null)
+                        ImageInput(
+                          onImagePicked: controller.onSelectedImage,
+                        ),
+                      SizedBox(
+                        height: 56.h,
                       ),
-                    SizedBox(
-                      height: 56.h,
-                    ),
-                    PrimaryButton(
-                      label: 'Kirim',
-                      onTap: () {},
-                    ),
-                    Gaps.v36,
-                  ],
+                      PrimaryButton(
+                        label: 'Kirim',
+                        onTap: () {
+                          if (formKey.currentState!.validate()) {
+                            controller.createLaporan();
+                          }
+                        },
+                      ),
+                      Gaps.v36,
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

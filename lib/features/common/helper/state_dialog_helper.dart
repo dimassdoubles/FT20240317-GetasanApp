@@ -14,7 +14,19 @@ class StateDialogHelper {
     String title,
     String body,
   ) {
-    EasyLoading.showError(body);
+    EasyLoading.showError(
+      body,
+      dismissOnTap: true,
+    );
+  }
+
+  static showSuccess(
+    String message,
+  ) {
+    EasyLoading.showSuccess(
+      message,
+      dismissOnTap: true,
+    );
   }
 
   static dismiss() {
