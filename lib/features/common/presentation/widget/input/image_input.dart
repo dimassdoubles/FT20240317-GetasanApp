@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
+import 'package:getasan_app/features/common/helper/image_helper.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/secondary_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
 import 'package:getasan_app/features/common/presentation/widget/or_divider.dart';
 
 class ImageInput extends StatelessWidget {
-  const ImageInput({super.key});
+  final void Function(XFile? image)? onImagePicked;
+  const ImageInput({
+    super.key,
+    this.onImagePicked,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const _FileImagePicker(),
+        _FileImagePicker(
+          onImagePicked: onImagePicked,
+        ),
         const OrDivider(),
         OutlinedButton(
           onPressed: () {
-            // TODO camera image picker
+            ImageHelper.pickImage(
+              fromCamera: false,
+              onImagePicked: onImagePicked,
+            );
           },
           style: OutlinedButton.styleFrom(
             elevation: 0,
@@ -51,13 +62,16 @@ class ImageInput extends StatelessWidget {
 }
 
 class _FileImagePicker extends StatelessWidget {
-  const _FileImagePicker();
+  final void Function(XFile? image)? onImagePicked;
+  const _FileImagePicker({
+    this.onImagePicked,
+  });
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
-        // TODO image picker from file
+        ImageHelper.pickImage(onImagePicked: onImagePicked);
       },
       style: OutlinedButton.styleFrom(
         padding: EdgeInsets.all(24.w),
