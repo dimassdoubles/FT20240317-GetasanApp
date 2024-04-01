@@ -26,7 +26,6 @@ class ImageInput extends StatelessWidget {
         OutlinedButton(
           onPressed: () {
             ImageHelper.pickImage(
-              fromCamera: false,
               onImagePicked: onImagePicked,
             );
           },
@@ -71,7 +70,7 @@ class _FileImagePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
-        ImageHelper.pickImage(onImagePicked: onImagePicked);
+        ImageHelper.pickImage(onImagePicked: onImagePicked, fromCamera: false);
       },
       style: OutlinedButton.styleFrom(
         padding: EdgeInsets.all(24.w),
