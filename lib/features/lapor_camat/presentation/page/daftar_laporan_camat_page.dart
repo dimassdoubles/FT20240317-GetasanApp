@@ -80,13 +80,16 @@ class DaftarLaporanCamatPage extends ConsumerWidget {
                               itemBuilder: (context, index) {
                                 final laporan = ref.watch(
                                     controller.laporanCamatProvider)![index];
-                                return LaporanTile(
-                                  title: laporan.pesan,
-                                  date: laporan.date.toString(),
-                                  no: "${(index + 1).toString().padLeft(2, "0")}.",
-                                  child: DetailLaporanCamtListItem(
-                                    pesan: laporan.pesan,
-                                    photoUrl: laporan.imageUrl,
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 8),
+                                  child: LaporanTile(
+                                    title: laporan.pesan,
+                                    date: laporan.date.toString(),
+                                    no: "${(index + 1).toString().padLeft(2, "0")}.",
+                                    child: DetailLaporanCamtListItem(
+                                      pesan: laporan.pesan,
+                                      photoUrl: laporan.imageUrl,
+                                    ),
                                   ),
                                 );
                               },
