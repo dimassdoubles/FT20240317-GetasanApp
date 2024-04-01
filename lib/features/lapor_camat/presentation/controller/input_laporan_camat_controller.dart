@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:getasan_app/features/common/helper/date_time_helper.dart';
 import 'package:getasan_app/features/common/helper/state_dialog_helper.dart';
+import 'package:getasan_app/features/lapor_camat/domain/models/laporan_camat.dart';
 import 'package:getasan_app/features/lapor_camat/domain/repo/lapor_camat_repo.dart';
 
 final inputLaporanCamatControllerProvider = Provider(
@@ -21,6 +23,12 @@ class InputLaporanCamatController {
     this._ref,
     this._repo,
   );
+  final loadingProvider = StateProvider<bool>((ref) => true);
+  final laporanCamatProvider = StateProvider<List<LaporanCamat>?>(
+    (ref) => null,
+  );
+  final tahunProvider = StateProvider<int>((ref) => 0);
+  final bulanProvider = StateProvider<String>((ref) => "");
 
   final selectedImageProvider = StateProvider<XFile?>((ref) => null);
 
@@ -62,6 +70,21 @@ class InputLaporanCamatController {
         'Gagal Membuat Laporan',
         'Keterangan: ${e.toString()}',
       );
+    }
+  }
+
+  void getLaporan(int tahun, int bulan) async {
+    _ref.read(tahunProvider.notifier).state = tahun;
+    _ref.read(bulanProvider.notifier).state = DateTimeHelper.months[bulan - 1];
+
+    debugPrint("getLaporan camat");
+    _ref.read(loadingProvider.notifier).state = true;
+    final (data, error) = await _repo.getLaporan(tahun, bulan);
+    _ref.read(loadingProvider.notifier).state = false;
+    if (error != null) {
+      StateDialogHelper.showError('', error.message);
+    } else {
+      _ref.read(laporanCamatProvider.notifier).state = data;
     }
   }
 }

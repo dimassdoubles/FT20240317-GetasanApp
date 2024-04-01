@@ -8,7 +8,7 @@ import 'package:getasan_app/features/common/presentation/widget/button/primary_b
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/dropdown_input.dart';
 
-class SearchLaporanView extends StatelessWidget {
+class SearchLaporanView extends StatefulWidget {
   final String icon;
   final String title;
   final Function(int bulan, int tahun)? onSearch;
@@ -20,6 +20,25 @@ class SearchLaporanView extends StatelessWidget {
     this.onSearch,
     this.onAdd,
   });
+
+  @override
+  State<SearchLaporanView> createState() => _SearchLaporanViewState();
+}
+
+class _SearchLaporanViewState extends State<SearchLaporanView> {
+  List<int> generateYear(int from) {
+    final currentYear = DateTime.now().year;
+    final List<int> years = [];
+
+    for (int year = currentYear; year >= from; year--) {
+      years.add(year);
+    }
+
+    return years;
+  }
+
+  int bulan = 0;
+  int tahun = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -40,23 +59,23 @@ class SearchLaporanView extends StatelessWidget {
                     children: [
                       Center(
                         child: Hero(
-                          tag: 'iconCard:$icon',
+                          tag: 'iconCard:${widget.icon}',
                           child: Image.asset(
-                            icon,
+                            widget.icon,
                             height: 52.w,
                           ),
                         ),
                       ),
                       Gaps.v24,
                       Hero(
-                        tag: 'titleCard:$title',
+                        tag: 'titleCard:${widget.title}',
                         child: DefaultTextStyle(
                           style: AppTexts.extraBold.copyWith(
                             fontSize: 35,
                             color: AppColors.primary,
                           ),
                           child: Text(
-                            title,
+                            widget.title,
                           ),
                         ),
                       ),
@@ -64,31 +83,21 @@ class SearchLaporanView extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      DropdownInput<String>(
+                      DropdownInput<int>(
                         hint: 'Tahun',
-                        items: const [
-                          DropdownMenuItem<String>(
-                            value: '2020',
-                            child: Text('2020'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: '2021',
-                            child: Text('2021'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: '2022',
-                            child: Text('2022'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: '2023',
-                            child: Text('2023'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: '2024',
-                            child: Text('2024'),
+                        items: [
+                          ...generateYear(2020).map(
+                            (year) => DropdownMenuItem<int>(
+                              value: year,
+                              child: Text('$year'),
+                            ),
                           ),
                         ],
-                        onChanged: (selected) => debugPrint(selected),
+                        onChanged: (selected) => setState(() {
+                          if (selected != null) {
+                            tahun = selected;
+                          }
+                        }),
                       ),
                       Gaps.v24,
                       DropdownInput<int>(
@@ -143,23 +152,25 @@ class SearchLaporanView extends StatelessWidget {
                             child: Text('Desember'),
                           ),
                         ],
-                        onChanged: (selected) => debugPrint(
-                          selected.toString(),
-                        ),
+                        onChanged: (selected) => setState(() {
+                          if (selected != null) {
+                            bulan = selected;
+                          }
+                        }),
                       ),
                     ],
                   ),
                   PrimaryButton(
                     label: 'Cari',
                     onTap: () {
-                      onSearch?.call(1, 1);
+                      widget.onSearch?.call(bulan, tahun);
                     },
                   ),
                   Align(
                     alignment: Alignment.centerRight,
                     child: FloatingActionButton(
                       onPressed: () {
-                        onAdd?.call();
+                        widget.onAdd?.call();
                       },
                       shape: const CircleBorder(),
                       elevation: 0,

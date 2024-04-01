@@ -22,14 +22,21 @@ class DetailLaporanCamtListItem extends StatelessWidget {
         Text(pesan),
         Gaps.v16,
         const Text('Foto'),
-        if (photoUrl == null)
-          Center(
-            child: Icon(
-              Icons.image,
-              color: AppColors.primary300,
-              size: 150.w,
-            ),
-          ),
+        Gaps.v8,
+        photoUrl == null
+            ? Center(
+                child: Icon(
+                  Icons.image,
+                  color: AppColors.primary300,
+                  size: 150.w,
+                ),
+              )
+            : Center(
+                child: Image.network(
+                  photoUrl!,
+                  width: 150.w,
+                ),
+              ),
         Gaps.v16,
       ],
     );
