@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class DateTimeHelper {
   DateTimeHelper._();
   static const months = [
@@ -14,6 +16,13 @@ class DateTimeHelper {
     "November",
     "Desember",
   ];
+
+  static String displasyTime(TimeOfDay time) {
+    final hour = time.hour.toString().padLeft(2, "0");
+    final minute = time.minute.toString().padLeft(2, "0");
+
+    return "$hour:$minute";
+  }
 
   static String displayDate(DateTime date) {
     final day = date.day.toString().padLeft(2, "0");

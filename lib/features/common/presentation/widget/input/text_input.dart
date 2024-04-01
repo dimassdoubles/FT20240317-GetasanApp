@@ -20,6 +20,7 @@ class TextInput extends StatelessWidget {
       name; // teks yang akan ditampilkan di error '{name} tidak boleh kosong'
   final String? Function(String? value)? validator;
   final bool readOnly;
+  final void Function()? onTap;
   const TextInput({
     super.key,
     this.readOnly = false,
@@ -35,6 +36,7 @@ class TextInput extends StatelessWidget {
     this.isRequired = true,
     this.name,
     this.validator,
+    this.onTap,
   });
 
   static border({Color color = AppColors.primary}) => OutlineInputBorder(
@@ -62,6 +64,7 @@ class TextInput extends StatelessWidget {
           ),
         Gaps.v4,
         TextFormField(
+          onTap: onTap,
           controller: controller,
           readOnly: readOnly,
           style: valueStyle,
