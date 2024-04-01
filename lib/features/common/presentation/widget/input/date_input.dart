@@ -17,7 +17,7 @@ class DateInput extends HookWidget {
   Widget build(BuildContext context) {
     final useDate = useState(DateTime.now());
     final useDateCtrl = useTextEditingController(
-      text: DateTimeHelper.displayDate(useDate.value),
+      text: "${DateTimeHelper.displayDate(useDate.value)} $hint",
     );
 
     return TextInput(
@@ -39,7 +39,8 @@ class DateInput extends HookWidget {
 
           if (dateSelected != null) {
             useDate.value = dateSelected;
-            useDateCtrl.text = DateTimeHelper.displayDate(useDate.value);
+            useDateCtrl.text =
+                "${DateTimeHelper.displayDate(useDate.value)} $hint";
             onDateSelected?.call(dateSelected);
           } else {
             onDateSelected?.call(useDate.value);
