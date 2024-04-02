@@ -4,6 +4,7 @@ class LaporanKematian {
   final String id;
   final String desaId;
   final String nik;
+  final String alamatRumah;
   final String namaLengkap;
   final String tempatLahir;
   final DateTime tanggalLahir;
@@ -17,6 +18,7 @@ class LaporanKematian {
     required this.id,
     required this.desaId,
     required this.nik,
+    required this.alamatRumah,
     required this.namaLengkap,
     required this.tempatLahir,
     required this.tanggalLahir,
@@ -32,6 +34,7 @@ class LaporanKematian {
       "id": id,
       "villageId": desaId,
       "nik": nik,
+      "alamatRumah": alamatRumah,
       "namaLengkap": namaLengkap,
       "tempatLahir": tempatLahir,
       "tanggalLahir": Timestamp.fromDate(tanggalLahir),
@@ -46,8 +49,9 @@ class LaporanKematian {
   factory LaporanKematian.fromJson(Map<String, dynamic> json) {
     return LaporanKematian(
       id: json["id"],
-      desaId: json["desaId"],
+      desaId: json["villageId"],
       nik: json["nik"],
+      alamatRumah: json["alamatRumah"],
       namaLengkap: json["namaLengkap"],
       tempatLahir: json["tempatLahir"],
       tanggalLahir: json["tanggalLahir"].toDate(),

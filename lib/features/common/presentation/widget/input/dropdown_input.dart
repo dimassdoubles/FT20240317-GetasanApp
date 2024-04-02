@@ -44,6 +44,12 @@ class DropdownInput<ValueType> extends StatelessWidget {
         Icons.keyboard_arrow_down,
         color: AppColors.primary,
       ),
+      validator: (value) {
+        if (value == null) {
+          return 'Silahkan masukan ${hint ?? 'inputan'} dulu';
+        }
+        return null;
+      },
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(18.w),
         border: border(),

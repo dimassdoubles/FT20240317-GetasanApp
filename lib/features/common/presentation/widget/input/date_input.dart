@@ -24,6 +24,7 @@ class DateInput extends HookWidget {
       controller: useDateCtrl,
       hint: 'dd/MM/yyyy ${hint ?? ""}',
       readOnly: true,
+      isRequired: true,
       suffixIcon: InkWell(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(14.w),
@@ -32,7 +33,7 @@ class DateInput extends HookWidget {
         onTap: () async {
           final dateSelected = await showDatePicker(
             context: context,
-            firstDate: DateTime(2020),
+            firstDate: DateTime(1000),
             currentDate: useDate.value,
             lastDate: DateTime.now(),
           );

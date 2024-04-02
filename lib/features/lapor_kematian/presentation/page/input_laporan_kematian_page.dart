@@ -8,6 +8,7 @@ import 'package:getasan_app/features/common/presentation/widget/getasan_app_bar.
 import 'package:getasan_app/features/common/presentation/widget/input/date_input.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/dropdown_input.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/text_input.dart';
+import 'package:getasan_app/features/lapor_kematian/presentation/controller/laporan_kematian_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class InputLaporanKematianPage extends HookConsumerWidget {
@@ -15,6 +16,8 @@ class InputLaporanKematianPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.read(laporanKematianControllerProvider);
+
     final useFormKey = useState(GlobalKey<FormState>());
 
     final useNikCtrl = useTextEditingController();
@@ -88,11 +91,13 @@ class InputLaporanKematianPage extends HookConsumerWidget {
                       TextInput(
                         controller: usePasanganCtrl,
                         hint: 'Nama Suami/Istri Yang Ditinggalkan',
+                        isRequired: false,
                       ),
                       Gaps.v16,
                       TextInput(
                         controller: useAnakCtrl,
                         hint: 'Nama Anak Yang Ditinggalkan',
+                        isRequired: false,
                       ),
                       Gaps.v16,
                       DropdownInput<String>(
@@ -122,7 +127,35 @@ class InputLaporanKematianPage extends HookConsumerWidget {
                       Gaps.v36,
                       PrimaryButton(
                         label: 'Kirim Formulir',
-                        onTap: () {},
+                        onTap: () async {
+                          if (useFormKey.value.currentState!.validate()) {
+                            final isSuccess = await controller.createLaporan(
+                              nik: useNikCtrl.text,
+                              namaLengkap: useNamaCtrl.text,
+                              alamat: useAlamatCtrl.text,
+                              tempatLahir: useTempatLahirCtrl.text,
+                              tanggalLahir: useTglLahir.value,
+                              tempatMeninggal: useTempatMeninggalCtrl.text,
+                              tanggalMeninggal: useTglMeninggal.value,
+                              namaPasanganDitinggal: usePasanganCtrl.text,
+                              namaAnakDitinggal: useAnakCtrl.text,
+                              statusKawin: useStatusKawin.value ?? "",
+                            );
+
+                            if (isSuccess) {
+                              useNikCtrl.text = "";
+                              useNamaCtrl.text = "";
+                              useAlamatCtrl.text = "";
+                              useTempatLahirCtrl.text = "";
+                              useTempatMeninggalCtrl.text = "";
+                              usePasanganCtrl.text = "";
+                              useAnakCtrl.text = "";
+                              useStatusKawin.value = "";
+                              useTglMeninggal.value = DateTime.now();
+                              useTglLahir.value = DateTime.now();
+                            }
+                          }
+                        },
                       ),
                       Gaps.v36,
                     ],

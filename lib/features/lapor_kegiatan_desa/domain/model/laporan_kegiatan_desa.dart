@@ -35,8 +35,6 @@ class LaporanKegiatanDesa {
   }
 
   factory LaporanKegiatanDesa.fromJson(Map<String, dynamic> json) {
-    print("$json");
-
     return LaporanKegiatanDesa(
       id: json["id"],
       desaId: json["villageId"],
