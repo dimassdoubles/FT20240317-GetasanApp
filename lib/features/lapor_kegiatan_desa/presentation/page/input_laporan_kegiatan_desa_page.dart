@@ -11,6 +11,7 @@ import 'package:getasan_app/features/common/presentation/widget/getasan_app_bar.
 import 'package:getasan_app/features/common/presentation/widget/input/date_input.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/image_input.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/text_input.dart';
+import 'package:getasan_app/features/lapor_kegiatan_desa/presentation/controller/laporan_kegiatan_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -28,6 +29,8 @@ class InputLaporanKegiatanDesaPage extends HookConsumerWidget {
 
     final useDate = useState(DateTime.now());
     final useGambar = useState<XFile?>(null);
+
+    final controller = ref.read(laporanKegiatanControllerProvider);
 
     return Scaffold(
       appBar: const GetasanAppBar(
@@ -60,6 +63,7 @@ class InputLaporanKegiatanDesaPage extends HookConsumerWidget {
                         ),
                         Gaps.v16,
                         DateInput(
+                          hint: "(tanggal kegiatan)",
                           onDateSelected: (dateSelected) {
                             useDate.value = dateSelected;
                           },
@@ -92,8 +96,30 @@ class InputLaporanKegiatanDesaPage extends HookConsumerWidget {
                         SizedBox(height: 42.h),
                         PrimaryButton(
                           label: 'Kirim',
-                          onTap: () {
-                            if (useFormKey.value.currentState!.validate()) {}
+                          onTap: () async {
+                            if (useFormKey.value.currentState!.validate()) {
+                              final gambar = useGambar.value != null
+                                  ? File(useGambar.value!.path)
+                                  : null;
+
+                              final isSuccess = await controller.createLaporan(
+                                namaKegiatan: useNamaKegiatanCtrl.text,
+                                penanggungJawab: usePenganggungJawabCtrl.text,
+                                tanggalKegiatan: useDate.value,
+                                hasilKegiatan: useHasilKegiatanCtrl.text,
+                                kendala: useKendalaCtrl.text,
+                                image: gambar,
+                              );
+
+                              if (isSuccess) {
+                                useNamaKegiatanCtrl.text = "";
+                                usePenganggungJawabCtrl.text = "";
+                                useHasilKegiatanCtrl.text = "";
+                                useKendalaCtrl.text = "";
+                                useGambar.value = null;
+                                useDate.value = DateTime.now();
+                              }
+                            }
                           },
                         ),
                         Gaps.v24,
