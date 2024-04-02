@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_size.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
+import 'package:getasan_app/features/common/helper/date_time_helper.dart';
 import 'package:getasan_app/features/common/presentation/widget/app_back_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
 import 'package:getasan_app/features/common/presentation/widget/getasan_app_bar.dart';
@@ -84,7 +85,9 @@ class DaftarLaporanCamatPage extends ConsumerWidget {
                                   padding: const EdgeInsets.only(bottom: 8),
                                   child: LaporanTile(
                                     title: laporan.pesan,
-                                    date: laporan.date.toString(),
+                                    date: DateTimeHelper.displayDate(
+                                      laporan.date,
+                                    ),
                                     no: "${(index + 1).toString().padLeft(2, "0")}.",
                                     child: DetailLaporanCamtListItem(
                                       pesan: laporan.pesan,

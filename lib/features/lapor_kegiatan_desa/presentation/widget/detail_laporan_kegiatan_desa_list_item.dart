@@ -15,7 +15,7 @@ class DetailLaporanKegiatanDesaListItem extends StatelessWidget {
     required this.waktu,
     required this.hasilKegiatan,
     required this.kendala,
-    this.photoUrl,
+    this.photoUrl = "",
   });
 
   @override
@@ -40,14 +40,20 @@ class DetailLaporanKegiatanDesaListItem extends StatelessWidget {
         Text(kendala),
         Gaps.v16,
         const Text('Foto'),
-        if (photoUrl == null)
-          Center(
-            child: Icon(
-              Icons.image,
-              color: AppColors.primary300,
-              size: 150.w,
-            ),
-          ),
+        photoUrl!.isEmpty
+            ? Center(
+                child: Icon(
+                  Icons.image,
+                  color: AppColors.primary300,
+                  size: 150.w,
+                ),
+              )
+            : Center(
+                child: Image.network(
+                  photoUrl!,
+                  width: 150.w,
+                ),
+              ),
         Gaps.v16,
       ],
     );

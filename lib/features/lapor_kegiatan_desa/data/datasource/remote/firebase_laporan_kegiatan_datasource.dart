@@ -69,4 +69,38 @@ class FirebaseLaporanKegiatanDatasource
       throw AppException("Gagal membuat laporan kegiatan: ${e.toString()}");
     }
   }
+
+  @override
+  Future<List<LaporanKegiatanDesa>> getLaporan(int year, int month) async {
+    try {
+      final firestore = FirebaseFirestore.instance;
+
+      final authProvider = _ref.read(authRepoProvider);
+      final (user, error) = await authProvider.isLogin();
+      if (error != null) {
+        throw AppAuthException("User belum login");
+      }
+
+      final desaId = user!.desa.id;
+
+      final startTime = DateTime(year, month, 1);
+      final endTime =
+          DateTime(year, month + 1, 1).subtract(const Duration(days: 1));
+
+      QuerySnapshot<Map<String, dynamic>> querySnapshot = await firestore
+          .collection("kegiatanReports")
+          .where("date", isGreaterThanOrEqualTo: startTime, isLessThan: endTime)
+          .where("villageId", isEqualTo: desaId)
+          .get();
+
+      final List<LaporanKegiatanDesa> daftarLaporan = [];
+      for (var document in querySnapshot.docs) {
+        daftarLaporan.add(LaporanKegiatanDesa.fromJson(document.data()));
+      }
+
+      return daftarLaporan;
+    } catch (e) {
+      throw AppException("Gagal mendapatkan laporan camat: ${e.toString()}");
+    }
+  }
 }
