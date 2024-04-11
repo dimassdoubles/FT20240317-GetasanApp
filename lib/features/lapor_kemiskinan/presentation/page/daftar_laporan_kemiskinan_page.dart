@@ -3,11 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
 import 'package:getasan_app/features/common/constant/style/app_size.dart';
 import 'package:getasan_app/features/common/constant/style/app_texts.dart';
+import 'package:getasan_app/features/common/helper/date_time_helper.dart';
 import 'package:getasan_app/features/common/presentation/widget/app_back_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
 import 'package:getasan_app/features/common/presentation/widget/getasan_app_bar.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/text_input.dart';
+import 'package:getasan_app/features/common/presentation/widget/laporan_tile.dart';
 import 'package:getasan_app/features/lapor_kemiskinan/presentation/controller/input_laporan_kemiskinan_controller.dart';
+import 'package:getasan_app/features/lapor_kemiskinan/presentation/widget/detail_laporan_kemiskinan_list_item.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DaftarLaporanKemiskinanPage extends HookConsumerWidget {
@@ -77,12 +80,26 @@ class DaftarLaporanKemiskinanPage extends HookConsumerWidget {
                                   .watch(controller.laporanKemiskinanProvider)!
                                   .length,
                               itemBuilder: (context, index) {
-                                // ignore: unused_local_variable
                                 final laporan = ref.watch(controller
                                     .laporanKemiskinanProvider)![index];
-                                return const Padding(
-                                  padding: EdgeInsets.only(bottom: 8),
-                                  child: Text('Hello World'),
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 8),
+                                  child: LaporanTile(
+                                    title: laporan.namaKepalaKeluarga,
+                                    date: DateTimeHelper.displayDate(
+                                        laporan.date),
+                                    no: "${(index + 1).toString().padLeft(2, "0")}.",
+                                    child: DetailLaporanKemiskinanListItem(
+                                      noKk: laporan.noKk,
+                                      pekerjaan: laporan.pekerjaan,
+                                      pendapatan: laporan.pendapatan,
+                                      alamat: laporan.alamat,
+                                      titikKoordinat: laporan.titikKoordinat,
+                                      gambarDepanUrl: laporan.gambarDepanUrl,
+                                      gambarBelakangurl:
+                                          laporan.gambarBelakangUrl,
+                                    ),
+                                  ),
                                 );
                               },
                             )
