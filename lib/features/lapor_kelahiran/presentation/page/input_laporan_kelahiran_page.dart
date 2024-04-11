@@ -11,6 +11,7 @@ import 'package:getasan_app/features/common/presentation/widget/input/date_input
 import 'package:getasan_app/features/common/presentation/widget/input/dropdown_input.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/input_jam.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/text_input.dart';
+import 'package:getasan_app/features/lapor_kelahiran/presentation/controller/laporan_kelahiran_controller.dart';
 import 'package:getasan_app/features/lapor_kelahiran/presentation/page/input_data_ayah_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -29,6 +30,10 @@ class InputLaporanKelahiranPage extends HookConsumerWidget {
     final useJenisKelamin = useState<String?>(null);
     final useDate = useState(DateTime.now());
     final useTime = useState(TimeOfDay.now());
+
+    final controller = ref.read(laporanKelahiranControllerProvider);
+    final laporanKelahiran =
+        ref.watch(controller.createLaporanKelahiranParamProvider);
 
     return Scaffold(
       appBar: const GetasanAppBar(
@@ -110,12 +115,26 @@ class InputLaporanKelahiranPage extends HookConsumerWidget {
                       PrimaryButton(
                         label: 'Berikutnya',
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const InputDataAyahPage(),
-                            ),
-                          );
+                          if (useFormKey.value.currentState!.validate()) {
+                            controller.setParam(
+                              laporanKelahiran.copyWith(
+                                noKk: useNoKkCtrl.text,
+                                namaBayi: useNamaBayiCtrl.text,
+                                anakKe: useAnakKeCtrl.text,
+                                jenisKelamin: useJenisKelamin.value ?? '',
+                                jamKelahiran: useTime.value.hour,
+                                menitKelahiran: useTime.value.minute,
+                                tempatLahir: useTempatLahirCtrl.text,
+                                tanggalLahir: useDate.value,
+                              ),
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const InputDataAyahPage(),
+                              ),
+                            );
+                          }
                         },
                       ),
                       Gaps.v36,

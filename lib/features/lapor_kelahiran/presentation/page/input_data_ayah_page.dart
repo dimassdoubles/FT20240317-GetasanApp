@@ -8,6 +8,7 @@ import 'package:getasan_app/features/common/presentation/widget/button/primary_b
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
 import 'package:getasan_app/features/common/presentation/widget/getasan_app_bar.dart';
 import 'package:getasan_app/features/common/presentation/widget/input/text_input.dart';
+import 'package:getasan_app/features/lapor_kelahiran/presentation/controller/laporan_kelahiran_controller.dart';
 import 'package:getasan_app/features/lapor_kelahiran/presentation/page/input_data_ibu_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -24,6 +25,10 @@ class InputDataAyahPage extends HookConsumerWidget {
     final useNikCtrl = useTextEditingController();
     final useNoHpCtrl = useTextEditingController();
     final useEmailCtrl = useTextEditingController();
+
+    final controller = ref.read(laporanKelahiranControllerProvider);
+    final laporanKelahiran =
+        ref.watch(controller.createLaporanKelahiranParamProvider);
 
     return Scaffold(
       appBar: const GetasanAppBar(
@@ -84,12 +89,23 @@ class InputDataAyahPage extends HookConsumerWidget {
                       PrimaryButton(
                         label: 'Berikutnya',
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const InputDataIbuPage(),
-                            ),
-                          );
+                          if (useFormKey.value.currentState!.validate()) {
+                            controller.setParam(laporanKelahiran.copyWith(
+                              namaAyah: useNamaAyahCtrl.text,
+                              pekerjaanAyah: usePekerjaanAyahCtrl.text,
+                              alamatRumahAyah: useAlamatRumahCtrl.text,
+                              nikAyah: useNikCtrl.text,
+                              noHpAyah: useNoHpCtrl.text,
+                              emailAyah: useEmailCtrl.text,
+                            ));
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const InputDataIbuPage(),
+                              ),
+                            );
+                          }
                         },
                       ),
                       Gaps.v36,
