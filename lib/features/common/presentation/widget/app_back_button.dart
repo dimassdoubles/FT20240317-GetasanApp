@@ -13,8 +13,13 @@ class AppBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+      ),
+      onPressed: () {
         Navigator.pop(context);
       },
       child: Padding(
