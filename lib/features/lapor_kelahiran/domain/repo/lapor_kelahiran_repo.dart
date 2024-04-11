@@ -1,6 +1,6 @@
 import 'package:getasan_app/features/common/constant/error/app_failure.dart';
 import 'package:getasan_app/features/lapor_kelahiran/data/datasource/remote/laporan_kelahiran_remote_datasource.dart';
-import 'package:getasan_app/features/lapor_kelahiran/data/repo_impl/laporan_kelahiran_repo_impl.dart';
+import 'package:getasan_app/features/lapor_kelahiran/data/repo_impl/lapor_kelahiran_repo_impl.dart';
 import 'package:getasan_app/features/lapor_kelahiran/domain/model/laporan_kelahiran.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

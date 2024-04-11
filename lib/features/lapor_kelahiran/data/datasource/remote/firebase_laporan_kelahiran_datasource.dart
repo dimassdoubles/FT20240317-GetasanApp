@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:getasan_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:getasan_app/features/common/constant/error/app_exception.dart';
@@ -106,6 +107,8 @@ class FirebaseLaporanKelahiranDatasource
 
       final List<LaporanKelahiran> daftarLaporan = [];
       for (var document in querySnapshot.docs) {
+        debugPrint("Sampai sini guwa");
+        debugPrint(document.data.toString());
         daftarLaporan.add(
           LaporanKelahiran.fromJson(document.data()),
         );

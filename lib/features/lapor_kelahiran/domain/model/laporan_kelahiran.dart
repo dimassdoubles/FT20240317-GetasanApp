@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:getasan_app/features/common/helper/json_helper.dart';
 
 class LaporanKelahiran {
   final String id;
@@ -57,34 +58,35 @@ class LaporanKelahiran {
 
   factory LaporanKelahiran.fromJson(Map<String, dynamic> json) {
     return LaporanKelahiran(
-      id: json["id"],
-      desaId: json["desaId"],
-      noKk: json["noKk"],
-      namaBayi: json["namaBayi"],
-      anakKe: json["anakKe"],
-      jenisKelamin: json["jenisKelamin"],
-      jamKelahiran: json["jamKelahiran"],
-      menitKelahiran: json["meniKelahiran"],
-      tempatLahir: json["tempatLahir"],
-      tanggalLahir: json["tanggalLahir"].toDate(),
-      namaAyah: json["namaAyah"],
-      pekerjaanAyah: json["pekerjaanAyah"],
-      alamatRumahAyah: json["alamatRumahAyah"],
-      nikAyah: json["nikAyah"],
-      noHpAyah: json["noHpAyah"],
-      emailAyah: json["emailAyah"],
-      namaIbu: json["namaIbu"],
-      pekerjaanIbu: json["pekerjaanIbu"],
-      alamatRumahIbu: json["alamatRumahIbu"],
-      nikIbu: json["nikIbu"],
-      noHpIbu: json["noHpIbu"],
-      emailIbu: json["emailIbu"],
+      id: JsonHelper.safeParse(json, "id"),
+      desaId: JsonHelper.safeParse(json, "villageId"),
+      noKk: JsonHelper.safeParse(json, "noKk"),
+      namaBayi: JsonHelper.safeParse(json, "namaBayi"),
+      anakKe: JsonHelper.safeParse(json, "anakKe"),
+      jenisKelamin: JsonHelper.safeParse(json, "jenisKelamin"),
+      jamKelahiran: JsonHelper.safeParse(json, "jamKelahiran"),
+      menitKelahiran: JsonHelper.safeParse(json, "menitKelahiran"),
+      tempatLahir: JsonHelper.safeParse(json, "tempatLahir"),
+      tanggalLahir: JsonHelper.safeParse(json, "tanggalLahir").toDate(),
+      namaAyah: JsonHelper.safeParse(json, "namaAyah"),
+      pekerjaanAyah: JsonHelper.safeParse(json, "pekerjaanAyah"),
+      alamatRumahAyah: JsonHelper.safeParse(json, "alamatRumahAyah"),
+      nikAyah: JsonHelper.safeParse(json, "nikAyah"),
+      noHpAyah: JsonHelper.safeParse(json, "noHpAyah"),
+      emailAyah: JsonHelper.safeParse(json, "emailAyah"),
+      namaIbu: JsonHelper.safeParse(json, "namaIbu"),
+      pekerjaanIbu: JsonHelper.safeParse(json, "pekerjaanIbu"),
+      alamatRumahIbu: JsonHelper.safeParse(json, "alamatRumahIbu"),
+      nikIbu: JsonHelper.safeParse(json, "nikIbu"),
+      noHpIbu: JsonHelper.safeParse(json, "noHpIbu"),
+      emailIbu: JsonHelper.safeParse(json, "emailIbu"),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
+      "noHpIbu": noHpIbu,
       'villageId': desaId,
       "noKk": noKk,
       "namaBayi": namaBayi,

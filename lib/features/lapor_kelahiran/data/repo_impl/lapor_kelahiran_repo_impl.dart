@@ -2,7 +2,7 @@ import 'package:getasan_app/features/common/constant/error/app_failure.dart';
 import 'package:getasan_app/features/common/helper/repo_helper.dart';
 import 'package:getasan_app/features/lapor_kelahiran/data/datasource/remote/laporan_kelahiran_remote_datasource.dart';
 import 'package:getasan_app/features/lapor_kelahiran/domain/model/laporan_kelahiran.dart';
-import 'package:getasan_app/features/lapor_kelahiran/domain/repo/Laporan_kelahiran_repo.dart';
+import 'package:getasan_app/features/lapor_kelahiran/domain/repo/lapor_kelahiran_repo.dart';
 
 class LaporanKelahiranRepoImpl implements LaporanKelahiranRepo {
   final LaporanKelahiranRemoteDatasource _remoteDatasouce;

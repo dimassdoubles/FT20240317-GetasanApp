@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:getasan_app/features/common/helper/state_dialog_helper.dart';
 import 'package:getasan_app/features/lapor_kelahiran/domain/model/laporan_kelahiran.dart';
-import 'package:getasan_app/features/lapor_kelahiran/domain/repo/Laporan_kelahiran_repo.dart';
+import 'package:getasan_app/features/lapor_kelahiran/domain/repo/lapor_kelahiran_repo.dart';
 
 final laporanKelahiranControllerProvider = Provider(
   (ref) => LaporanKelahiranController(
@@ -37,8 +37,9 @@ class LaporanKelahiranController {
     _ref.read(tahunProvider.notifier).state = year;
     _ref.read(bulanProvider.notifier).state = month - 1;
 
-    debugPrint("getLaporan kematian");
+    debugPrint("getLaporan kelahiran");
     final (data, error) = await _repo.getLaporan(year, month);
+    debugPrint("Sampai sini");
 
     final daftarLaporan = _ref.read(daftarLaporanProvider.notifier);
 
@@ -50,7 +51,7 @@ class LaporanKelahiranController {
 
       daftarLaporan.state = [];
     } else {
-      debugPrint("berhasil dapat laporan kematian");
+      debugPrint("berhasil dapat laporan kelahiran");
       debugPrint(data.toString());
       daftarLaporan.state = data;
     }
