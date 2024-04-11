@@ -11,6 +11,7 @@ import 'package:getasan_app/features/lapor_camat/presentation/page/lapor_camat_p
 import 'package:getasan_app/features/lapor_kegiatan_desa/presentation/page/lapor_kegiatan_desa_page.dart';
 import 'package:getasan_app/features/lapor_kelahiran/presentation/page/lapor_kelahiran_page.dart';
 import 'package:getasan_app/features/lapor_kematian/presentation/page/lapor_kematian_page.dart';
+import 'package:getasan_app/features/lapor_kemiskinan/presentation/page/lapor_kemiskinan_page.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
@@ -107,6 +108,19 @@ class HomeView extends ConsumerWidget {
                   },
                   title: 'Laporan Kematian',
                   icon: 'assets/icons/ic_laporan_kematian.png',
+                ),
+                Gaps.v16,
+                AppCard(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LaporKemiskinanPage(),
+                      ),
+                    );
+                  },
+                  title: 'Laporan Kemiskinan',
+                  icon: 'assets/icons/ic_laporan_kemiskinan.png',
                 ),
                 Gaps.v16,
               ],

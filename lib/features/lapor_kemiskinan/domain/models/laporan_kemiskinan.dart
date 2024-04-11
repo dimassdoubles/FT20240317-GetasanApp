@@ -7,6 +7,7 @@ class LaporanKemiskinan {
   final String noKk;
   final String namaKepalaKeluarga;
   final String pekerjaan;
+  final int pendapatan;
   final String alamat;
   final String titikKoordinat;
   final String gambarDepanUrl;
@@ -19,6 +20,7 @@ class LaporanKemiskinan {
     required this.noKk,
     required this.namaKepalaKeluarga,
     required this.pekerjaan,
+    required this.pendapatan,
     required this.alamat,
     required this.titikKoordinat,
     required this.gambarDepanUrl,
@@ -33,6 +35,7 @@ class LaporanKemiskinan {
       noKk: json["noKk"],
       namaKepalaKeluarga: json["namaKepalaKeluarga"],
       pekerjaan: json["pekerjaan"],
+      pendapatan: json["pendapatan"],
       alamat: json["alamat"],
       titikKoordinat: json["titikKoordinat"],
       gambarDepanUrl: json["gambarDepanUrl"],
@@ -48,6 +51,7 @@ class LaporanKemiskinan {
       "noKk": noKk,
       "namaKepalaKeluarga": namaKepalaKeluarga,
       "pekerjaan": pekerjaan,
+      "pendapatan": pendapatan,
       "alamat": alamat,
       "titikKoordinat": titikKoordinat,
       "gambarDepanUrl": gambarDepanUrl,

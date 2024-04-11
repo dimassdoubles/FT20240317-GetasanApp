@@ -4,7 +4,7 @@ import 'package:getasan_app/features/common/constant/error/app_failure.dart';
 import 'package:getasan_app/features/common/helper/repo_helper.dart';
 import 'package:getasan_app/features/lapor_kemiskinan/data/datasource/remote/lapor_kemiskinan_remote_datasource.dart';
 import 'package:getasan_app/features/lapor_kemiskinan/domain/models/laporan_kemiskinan.dart';
-import 'package:getasan_app/features/lapor_kemiskinan/domain/repo/lapor_camat_repo.dart';
+import 'package:getasan_app/features/lapor_kemiskinan/domain/repo/lapor_kemiskinan_repo.dart';
 
 class LaporKemiskinanRepoImpl implements LaporKemiskinanRepo {
   final LaporKemiskinanRemoteDatasource _remoteDatasource;
@@ -16,6 +16,7 @@ class LaporKemiskinanRepoImpl implements LaporKemiskinanRepo {
     required String noKk,
     required String namaKepalaKeluarga,
     required String pekerjaan,
+    required int pendapatan,
     required String alamat,
     required String titikKoordinat,
     File? gambarDepan,
@@ -27,8 +28,11 @@ class LaporKemiskinanRepoImpl implements LaporKemiskinanRepo {
           noKk: noKk,
           namaKepalaKeluarga: namaKepalaKeluarga,
           pekerjaan: pekerjaan,
+          pendapatan: pendapatan,
           alamat: alamat,
           titikKoordinat: titikKoordinat,
+          gambarDepan: gambarDepan,
+          gambarBelakang: gambarBelakang,
         );
       },
     );

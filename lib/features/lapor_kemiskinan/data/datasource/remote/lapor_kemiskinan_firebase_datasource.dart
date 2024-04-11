@@ -19,6 +19,7 @@ class LaporKemiskinanFirebaseDatasource
     required String noKk,
     required String namaKepalaKeluarga,
     required String pekerjaan,
+    required int pendapatan,
     required String alamat,
     required String titikKoordinat,
     File? gambarDepan,
@@ -57,6 +58,7 @@ class LaporKemiskinanFirebaseDatasource
               namaKepalaKeluarga: namaKepalaKeluarga,
               noKk: noKk,
               pekerjaan: pekerjaan,
+              pendapatan: pendapatan,
               titikKoordinat: titikKoordinat,
             ).toJson(),
           );

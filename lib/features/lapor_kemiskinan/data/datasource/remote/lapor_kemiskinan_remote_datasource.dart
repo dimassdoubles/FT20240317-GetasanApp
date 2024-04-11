@@ -14,6 +14,7 @@ abstract class LaporKemiskinanRemoteDatasource {
     required String noKk,
     required String namaKepalaKeluarga,
     required String pekerjaan,
+    required int pendapatan,
     required String alamat,
     required String titikKoordinat,
     File? gambarDepan,
