@@ -28,7 +28,9 @@ class LaporanKegiatanController {
   );
 
   Future<void> getLaporan(int year, int month) async {
-    debugPrint("getLaporan kegiatan desa");
+    _ref.read(tahunProvider.notifier).state = year;
+    _ref.read(bulanProvider.notifier).state = month;
+
     final (data, error) = await _repo.getLaporan(year, month);
 
     final daftarLaporan = _ref.read(daftarLaporanProvider.notifier);

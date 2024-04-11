@@ -19,6 +19,8 @@ class DaftarLaporanKegiatanDesaPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.read(laporanKegiatanControllerProvider);
+    final selectedTahun = ref.watch(controller.tahunProvider);
+    final selectedBulan = ref.watch(controller.bulanProvider);
 
     return Scaffold(
       appBar: const GetasanAppBar(
@@ -41,16 +43,16 @@ class DaftarLaporanKegiatanDesaPage extends HookConsumerWidget {
             Gaps.v24,
             Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: TextInput(
-                    hint: '2024',
+                    hint: selectedTahun.toString(),
                     readOnly: true,
                   ),
                 ),
                 Gaps.h8,
-                const Expanded(
+                Expanded(
                   child: TextInput(
-                    hint: 'Maret',
+                    hint: DateTimeHelper.months[selectedBulan - 1],
                     readOnly: true,
                   ),
                 ),
