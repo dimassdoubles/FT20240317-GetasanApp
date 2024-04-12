@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
+import 'package:getasan_app/features/common/presentation/page/network_gallery_page.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
 
 class DetailLaporanKegiatanDesaListItem extends StatelessWidget {
@@ -49,9 +50,21 @@ class DetailLaporanKegiatanDesaListItem extends StatelessWidget {
                 ),
               )
             : Center(
-                child: Image.network(
-                  photoUrl!,
-                  width: 150.w,
+                child: InkWell(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NetworkGalleryPage(
+                        listUrl: [
+                          photoUrl!,
+                        ],
+                      ),
+                    ),
+                  ),
+                  child: Image.network(
+                    photoUrl!,
+                    width: 150.w,
+                  ),
                 ),
               ),
         Gaps.v16,

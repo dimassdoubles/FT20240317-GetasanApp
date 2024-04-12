@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_colors.dart';
+import 'package:getasan_app/features/common/presentation/page/network_gallery_page.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
 
 class DetailLaporanKemiskinanListItem extends StatelessWidget {
@@ -58,9 +59,21 @@ class DetailLaporanKemiskinanListItem extends StatelessWidget {
                     ),
                   )
                 : Center(
-                    child: Image.network(
-                      gambarDepanUrl,
-                      width: 150.w,
+                    child: InkWell(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NetworkGalleryPage(
+                            listUrl: [
+                              gambarDepanUrl,
+                            ],
+                          ),
+                        ),
+                      ),
+                      child: Image.network(
+                        gambarDepanUrl,
+                        width: 150.w,
+                      ),
                     ),
                   ),
             gambarBelakangurl.isEmpty
@@ -72,9 +85,21 @@ class DetailLaporanKemiskinanListItem extends StatelessWidget {
                     ),
                   )
                 : Center(
-                    child: Image.network(
-                      gambarBelakangurl,
-                      width: 150.w,
+                    child: InkWell(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NetworkGalleryPage(
+                            listUrl: [
+                              gambarBelakangurl,
+                            ],
+                          ),
+                        ),
+                      ),
+                      child: Image.network(
+                        gambarBelakangurl,
+                        width: 150.w,
+                      ),
                     ),
                   ),
           ],

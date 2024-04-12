@@ -42,7 +42,7 @@ class InputLaporanCamatController {
     _ref.read(selectedImageProvider.notifier).state = null;
   }
 
-  void createLaporan() async {
+  Future<bool> createLaporan() async {
     debugPrint('Hallo create laporan dimulai');
     try {
       StateDialogHelper.showLoading();
@@ -59,10 +59,12 @@ class InputLaporanCamatController {
           'Gagal Membuat Laporan',
           'Keterangan: ${err.message}',
         );
+        return false;
       } else {
         StateDialogHelper.showSuccess('Laporan camat berhasil dibuat');
         pesanController.text = '';
         deleteImage();
+        return true;
       }
     } catch (e) {
       StateDialogHelper.dismiss();
@@ -70,6 +72,7 @@ class InputLaporanCamatController {
         'Gagal Membuat Laporan',
         'Keterangan: ${e.toString()}',
       );
+      return false;
     }
   }
 

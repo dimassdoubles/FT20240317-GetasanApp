@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getasan_app/features/common/constant/style/app_size.dart';
+import 'package:getasan_app/features/common/presentation/page/file_gallery_page.dart';
 import 'package:getasan_app/features/common/presentation/widget/app_back_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/button/primary_button.dart';
 import 'package:getasan_app/features/common/presentation/widget/gaps.dart';
@@ -148,8 +149,20 @@ class _FileImae extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.file(
-          File(file.path),
+        InkWell(
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FileGallerypage(
+                listFile: [
+                  File(file.path),
+                ],
+              ),
+            ),
+          ),
+          child: Image.file(
+            File(file.path),
+          ),
         ),
         Align(
           alignment: Alignment.topRight,
