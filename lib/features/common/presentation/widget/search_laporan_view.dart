@@ -36,8 +36,8 @@ class SearchLaporanView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final useBulan = useState(0);
-    final useTahun = useState(0);
+    final useBulan = useState(DateTime.now().month);
+    final useTahun = useState(DateTime.now().year);
 
     final useFormKey = useState(GlobalKey<FormState>());
 
@@ -86,6 +86,7 @@ class SearchLaporanView extends HookConsumerWidget {
                       children: [
                         DropdownInput<int>(
                           hint: 'Tahun',
+                          value: useTahun.value,
                           items: [
                             ...generateYearFrom(2020).map(
                               (year) => DropdownMenuItem<int>(
@@ -99,6 +100,7 @@ class SearchLaporanView extends HookConsumerWidget {
                         Gaps.v24,
                         DropdownInput<int>(
                           hint: 'Bulan',
+                          value: useBulan.value,
                           items: const [
                             DropdownMenuItem(
                               value: 1,
