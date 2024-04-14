@@ -48,3 +48,5 @@ app.*.map.json
 .fvm/flutter_sdk
 .fvm/
 pubspec.lock
+
+upload-keystore.jks
