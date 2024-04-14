@@ -122,7 +122,9 @@ class HomeView extends ConsumerWidget {
                   title: 'Laporan Kemiskinan',
                   icon: 'assets/icons/ic_laporan_kemiskinan.png',
                 ),
-                Gaps.v16,
+                SizedBox(
+                  height: 128.w,
+                ),
               ],
             ),
           ),

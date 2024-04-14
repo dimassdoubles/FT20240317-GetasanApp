@@ -23,6 +23,9 @@ class InputLaporanKemiskinanController {
     this._ref,
     this._repo,
   );
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final loadingProvider = StateProvider<bool>((ref) => true);
   final laporanKemiskinanProvider = StateProvider<List<LaporanKemiskinan>?>(
     (ref) => null,

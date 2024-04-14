@@ -113,12 +113,8 @@ class InputLaporanKegiatanDesaPage extends HookConsumerWidget {
                               );
 
                               if (isSuccess) {
-                                useNamaKegiatanCtrl.text = "";
-                                usePenganggungJawabCtrl.text = "";
-                                useHasilKegiatanCtrl.text = "";
-                                useKendalaCtrl.text = "";
-                                useGambar.value = null;
-                                useDate.value = DateTime.now();
+                                // ignore: use_build_context_synchronously
+                                Navigator.pop(context);
                               }
                             }
                           },

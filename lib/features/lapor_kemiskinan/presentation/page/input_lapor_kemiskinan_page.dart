@@ -23,14 +23,12 @@ class InputLaporKemiskinanPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.read(inputLaporanKemiskinanControllerProvider);
 
-    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
     return Scaffold(
       appBar: const GetasanAppBar(
         isCenterLogo: true,
       ),
       body: Form(
-        key: formKey,
+        key: controller.formKey,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSize.pagePadding),
           child: Column(
@@ -121,7 +119,7 @@ class InputLaporKemiskinanPage extends ConsumerWidget {
                       PrimaryButton(
                         label: 'Kirim',
                         onTap: () async {
-                          if (formKey.currentState!.validate()) {
+                          if (controller.formKey.currentState!.validate()) {
                             final isSuccess = await controller.createLaporan();
                             if (isSuccess) {
                               // ignore: use_build_context_synchronously
